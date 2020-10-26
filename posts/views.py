@@ -10,15 +10,10 @@ def index(request):
     return render(request, "index.html", context)
 
 
-# view-функция для страницы сообщества
 def group_posts(request, slug):
-    # функция get_object_or_404 получает по заданным критериям объект
-    # из базы данных или возвращает сообщение об ошибке, если объект не найден
     group = get_object_or_404(Group, slug=slug)
 
-    # Метод .filter позволяет ограничить поиск по критериям.
-    # Это аналог добавления условия WHERE group_id = {group_id}
-    posts = group.posts.all().order_by("-pub_date")[:12]
+    posts = group.posts.all()[:12]
     context = {
         "group": group,
         "posts": posts
