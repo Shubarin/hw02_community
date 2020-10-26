@@ -3,7 +3,7 @@ from .models import Group, Post
 
 
 def index(request):
-    latest = Post.objects.order_by("-pub_date")[:11]
+    latest = Post.objects.all()[:11]
     context = {
         "posts": latest
     }
